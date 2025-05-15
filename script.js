@@ -1,5 +1,5 @@
 // Hugging Face API token
-const HF_API_TOKEN = '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';
+const HF_API_TOKEN = process.env.HF_API_TOKEN || '';
 
 function switchTab(tab) {
     const contentTab = document.getElementById('contentTab');

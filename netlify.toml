@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [build]
   publish = "."
 
@@ -5,3 +6,6 @@
   from = "/*"
   to = "/index.html"
   status = 200 
+=======
+
+>>>>>>> 90a09396f41d6a5c5a2ecb3676ceec1b991f865e
