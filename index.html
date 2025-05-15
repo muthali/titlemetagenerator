@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Title & Meta Description Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .tab-active {
+            border-bottom: 2px solid #2563eb;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">AI Title & Meta Description Generator</h1>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <!-- Tabs -->
+                <div class="flex border-b mb-4">
+                    <button onclick="switchTab('content')" id="contentTab" class="px-4 py-2 font-medium tab-active">Paste Content</button>
+                    <button onclick="switchTab('url')" id="urlTab" class="px-4 py-2 font-medium">Enter URL</button>
+                </div>
+
+                <!-- Content Input -->
+                <div id="contentInput" class="mb-4">
+                    <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Paste your content here:</label>
+                    <textarea id="content" rows="6" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+
+                <!-- URL Input -->
+                <div id="urlInput" class="mb-4 hidden">
+                    <label for="url" class="block text-sm font-medium text-gray-700 mb-2">Enter URL:</label>
+                    <input type="url" id="url" placeholder="https://example.com" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mt-4">
+                    <button onclick="generateContent()" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Generate Title & Meta Description
+                    </button>
+                </div>
+            </div>
+
+            <div id="results" class="bg-white rounded-lg shadow-lg p-6 hidden">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold mb-2 text-gray-800">Generated Title:</h2>
+                    <div class="flex items-center">
+                        <p id="generatedTitle" class="flex-grow text-gray-700"></p>
+                        <button onclick="copyToClipboard('generatedTitle')" class="ml-2 text-blue-600 hover:text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold mb-2 text-gray-800">Generated Meta Description:</h2>
+                    <div class="flex items-center">
+                        <p id="generatedMeta" class="flex-grow text-gray-700"></p>
+                        <button onclick="copyToClipboard('generatedMeta')" class="ml-2 text-blue-600 hover:text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="loading-spinner">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
